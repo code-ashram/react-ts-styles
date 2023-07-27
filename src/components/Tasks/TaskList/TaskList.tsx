@@ -1,18 +1,23 @@
-import React from "react";
+import {FC} from "react";
 
-import Task from "../Task/Task";
+import TaskItem from "../../../models/TaskItem.ts";
+import Task from "../Task/Task.tsx";
+
 import "./TaskList.css";
 
-const TaskList = (props) => {
-  return (
-    <ul className="task-list">
-      {props.items.map((task) => (
-        <Task key={task.id} id={task.id} onDelete={props.onDeleteTask}>
-          {task.text}
-        </Task>
-      ))}
-    </ul>
-  );
-};
+type Props = {
+  items: TaskItem[],
+  onDeleteTask: (taskId: string) => void
+}
+
+const TaskList: FC<Props> = ({items, onDeleteTask}) => (
+  <ul className="task-list">
+    {items.map((task) => (
+      <Task key={task.id} id={task.id} onDelete={onDeleteTask}>
+        {task.text}
+      </Task>
+    ))}
+  </ul>
+)
 
 export default TaskList;

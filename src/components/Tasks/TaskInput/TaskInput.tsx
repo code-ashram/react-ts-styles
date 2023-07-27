@@ -1,27 +1,32 @@
-import React, { useState } from "react";
+import {ChangeEvent, FC, FormEvent, useState} from "react";
 
 import Button from "../../UI/Button/Button";
+
 import "./TaskInput.css";
 
-const TaskInput = (props) => {
-  const [inputText, setinputText] = useState("");
+type Props = {
+  onAddTask: (inputText: string) => void
+}
 
-  const taskInputChangeHandler = (event) => {
-    setinputText(event.target.value);
+const TaskInput: FC<Props> = ({onAddTask}) => {
+  const [inputText, setInputText] = useState<string>("");
+
+  const handleTaskInputChange = (event: ChangeEvent<HTMLInputElement>): void => {
+    setInputText(event.target.value);
   };
 
-  const formSubmitHandler = (event) => {
+  const handleFormSubmit = (event: FormEvent): void => {
     event.preventDefault();
-    props.onAddTask(inputText);
+    onAddTask(inputText);
   };
 
   return (
-    <form onSubmit={formSubmitHandler}>
+    <form onSubmit={handleFormSubmit}>
       <div className="form-control">
         <label>Задачи</label>
-        <input type="text" onChange={taskInputChangeHandler} />
+        <input type="text" onChange={handleTaskInputChange} />
       </div>
-      <Button type="submit">Добавить Задачу</Button>
+      <Button buttonType={"submit"}>Добавить Задачу</Button>
     </form>
   );
 };

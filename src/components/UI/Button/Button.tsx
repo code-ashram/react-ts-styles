@@ -1,9 +1,16 @@
+import {FC, ReactNode} from "react";
+
 import "./Button.css";
 
-const Button = (props) => {
+type Props = {
+  buttonType?: "button" | "submit" | "reset" | undefined,
+  children: ReactNode
+}
+
+const Button: FC<Props> = ({buttonType = "button", children}) => {
   return (
-    <button type={props.type} className="button">
-      {props.children}
+    <button type={buttonType} className="button">
+      {children}
     </button>
   );
 };

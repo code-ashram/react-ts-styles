@@ -1,18 +1,24 @@
-import React from "react";
+import {FC, ReactNode} from "react";
 
 import "./Task.css";
 
-const Task = (props) => {
+type Props = {
+  id: string
+  onDelete: (id: string) => void
+  children: ReactNode
+}
+
+const Task: FC<Props> = ({onDelete, id, children}) => {
   // const [deleteText, setDeleteText] = useState('');
 
-  const deleteHandler = () => {
+  const handleDelete = () => {
     // setDeleteText('(Deleted!)');
-    props.onDelete(props.id);
+    onDelete(id);
   };
 
   return (
-    <li className="task-item" onClick={deleteHandler}>
-      {props.children}
+    <li className="task-item" onClick={handleDelete}>
+      {children}
     </li>
   );
 };
