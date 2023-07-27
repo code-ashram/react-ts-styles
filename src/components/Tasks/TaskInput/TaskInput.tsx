@@ -1,24 +1,24 @@
-import {ChangeEvent, FC, FormEvent, useState} from "react";
+import { ChangeEvent, FC, FormEvent, useState } from 'react'
 
-import Button from "../../UI/Button/Button";
+import Button from '../../UI/Button/Button'
 
-import "./TaskInput.css";
+import './TaskInput.css'
 
 type Props = {
   onAddTask: (inputText: string) => void
 }
 
-const TaskInput: FC<Props> = ({onAddTask}) => {
-  const [inputText, setInputText] = useState<string>("");
+const TaskInput: FC<Props> = ({ onAddTask }) => {
+  const [inputText, setInputText] = useState<string>('')
 
   const handleTaskInputChange = (event: ChangeEvent<HTMLInputElement>): void => {
-    setInputText(event.target.value);
-  };
+    setInputText(event.target.value)
+  }
 
   const handleFormSubmit = (event: FormEvent): void => {
-    event.preventDefault();
-    onAddTask(inputText);
-  };
+    event.preventDefault()
+    onAddTask(inputText)
+  }
 
   return (
     <form onSubmit={handleFormSubmit}>
@@ -26,9 +26,9 @@ const TaskInput: FC<Props> = ({onAddTask}) => {
         <label>Задачи</label>
         <input type="text" onChange={handleTaskInputChange} />
       </div>
-      <Button buttonType={"submit"}>Добавить Задачу</Button>
+      <Button buttonType={'submit'}>Добавить Задачу</Button>
     </form>
-  );
-};
+  )
+}
 
-export default TaskInput;
+export default TaskInput
