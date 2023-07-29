@@ -2,7 +2,7 @@ import { ChangeEvent, FC, FormEvent, useState } from 'react'
 
 import Button from '../../UI/Button/Button'
 
-import './TaskInput.css'
+import styles from './TaskInput.module.css'
 
 type Props = {
   onAddTask: (inputText: string) => void
@@ -13,7 +13,7 @@ const TaskInput: FC<Props> = ({ onAddTask }) => {
   const [isInputValid, setIsInputValid] = useState<boolean>(true)
 
   const handleTaskInputChange = (event: ChangeEvent<HTMLInputElement>): void => {
-    if(event.target.value.trim()) {
+    if (event.target.value.trim().length) {
       setIsInputValid(true)
     }
     setInputText(event.target.value)
@@ -21,8 +21,8 @@ const TaskInput: FC<Props> = ({ onAddTask }) => {
 
   const handleFormSubmit = (event: FormEvent): void => {
     event.preventDefault()
-    if(!inputText.trim()) {
-      setIsInputValid(!isInputValid)
+    if (!inputText.trim().length) {
+      setIsInputValid(false)
       return
     }
     onAddTask(inputText)
@@ -30,9 +30,9 @@ const TaskInput: FC<Props> = ({ onAddTask }) => {
 
   return (
     <form onSubmit={handleFormSubmit}>
-      <div className="form-control">
-        <label style={{color: !isInputValid ? 'red' : 'black'}}>Задачи</label>
-        <input type="text" onChange={handleTaskInputChange} style={{borderColor: !isInputValid ? 'red' : 'black', backgroundColor: !isInputValid ? 'salmon' : 'transparent'}} />
+      <div className={`${styles.formControl}${!isInputValid ? ` ${styles.invalid}` : ""}`}>
+        <label >Задачи</label>
+        <input type="text" onChange={handleTaskInputChange} />
       </div>
       <Button buttonType={'submit'}>Добавить Задачу</Button>
     </form>

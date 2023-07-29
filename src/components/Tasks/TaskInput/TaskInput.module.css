@@ -1,14 +1,14 @@
-.form-control {
+:local(.formControl) {
   margin: 0.5rem 0;
 }
 
-.form-control label {
+:local(.formControl) label {
   font-weight: bold;
   display: block;
   margin-bottom: 0.5rem;
 }
 
-.form-control input {
+:local(.formControl) input {
   display: block;
   width: 100%;
   border: 1px solid #ccc;
@@ -17,8 +17,17 @@
   padding: 0 0.25rem;
 }
 
-.form-control input:focus {
+:local(.formControl) input:focus {
   outline: none;
   background: #c8e1e4;
   border-color: #00358b;
+}
+
+:local(.formControl.invalid) input {
+    background-color: indianred;
+    border-color: red;
+}
+
+:local(.formControl.invalid) label {
+  color: red;
 }
