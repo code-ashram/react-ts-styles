@@ -1,6 +1,6 @@
 import { FC, ReactNode } from 'react'
 
-import './Task.css'
+import styles from './Task.module.css'
 
 type Props = {
   id: string
@@ -17,7 +17,7 @@ const Task: FC<Props> = ({ onDelete, id, children }) => {
   }
 
   return (
-    <li className="task-item" onClick={handleDelete}>
+    <li className={styles.taskItem} onClick={handleDelete}>
       {children}
     </li>
   )

@@ -3,7 +3,7 @@ import { FC } from 'react'
 import TaskItem from '../../../models/TaskItem.ts'
 import Task from '../Task/Task.tsx'
 
-import './TaskList.css'
+import styles from './TaskList.module.css'
 
 type Props = {
   items: TaskItem[],
@@ -11,7 +11,7 @@ type Props = {
 }
 
 const TaskList: FC<Props> = ({ items, onDeleteTask }) => (
-  <ul className="task-list">
+  <ul className={styles.taskList}>
     {items.map((task) => (
       <Task key={task.id} id={task.id} onDelete={onDeleteTask}>
         {task.text}

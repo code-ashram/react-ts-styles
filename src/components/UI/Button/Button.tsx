@@ -1,6 +1,6 @@
 import { FC, ReactNode } from 'react'
 
-import './Button.css'
+import styles from './Button.module.css'
 
 type Props = {
   buttonType?: 'button' | 'submit' | 'reset' | undefined,
@@ -9,7 +9,7 @@ type Props = {
 
 const Button: FC<Props> = ({ buttonType = 'button', children }) => {
   return (
-    <button type={buttonType} className="button">
+    <button type={buttonType} className={styles.button}>
       {children}
     </button>
   )
